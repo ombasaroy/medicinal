@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Delivery details {% endblock %}
+{% load static %}
+
+{% block landingSection %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card auth_card_outer">
+                    <div class="card-header">
+                        Delivery details
+                    </div>
+                    <div class="card-body auth_cards">
+                        <form action="#" method="post">
+                            {% csrf_token %}
+
+{#                            <div class="mt-2">#}
+{#                                <label for="first_name" >First name</label>#}
+{#                                <input type="text" name="first_name" id="first_name" required class="form-control">#}
+{#                            </div>#}
+{#                            <div class="mt-2">#}
+{#                                <label for="other_names">Other names</label>#}
+{#                                <input type="text" name="other_names" id="other_names" required class="form-control">#}
+{#                            </div>#}
+                            <div class="mt-2">
+                                <label for="county">County</label>
+                                <select name="county" id="county" class="form-control">
+                                    <option value="">---</option>
+                                    <option value="Nairobi">Nairobi</option>
+                                    <option value="Kajiado">Kajiado</option>
+                                    <option value="Kiambu">Kiambu</option>
+                                    <option value="Machakos">Machakoks</option>
+                                </select>
+
+                            </div>
+                            <div class="mt-2">
+                                <label for="town">Town</label>
+                                <input type="text" name="town" id="town" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="house">Enter building and house number</label>
+                                <input type="text" name="house" id="house" required class="form-control">
+                            </div>
+
+                            <div class="mt-4">
+                                <input type="submit" name="checkout" id="checkout" value="Checkout" class="btn btn-success">
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

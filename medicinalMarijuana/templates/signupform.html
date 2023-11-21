@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Medicinal/Sign up {% endblock %}
+{% load static %}
+
+{% block landingSection %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card auth_card_outer">
+                    <div class="card-header">
+                        Sign up
+                    </div>
+                    <div class="card-body auth_cards">
+                        <form action="{% url 'usersignup' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="mt-2">
+                                {% for message in messages %}
+                                    <div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert">
+                                      <i class="fa-solid fa-circle-check" style="margin-left: 5px"></i>{{ message }} <a
+                                            href="{% url 'loginform' %}" style="font-weight: 600">Click here to login.</a>
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+{#                            <div class="mt-2">#}
+{#                                <label for="first_name" >First name</label>#}
+{#                                <input type="text" name="first_name" id="first_name" required class="form-control">#}
+{#                            </div>#}
+{#                            <div class="mt-2">#}
+{#                                <label for="other_names">Other names</label>#}
+{#                                <input type="text" name="other_names" id="other_names" required class="form-control">#}
+{#                            </div>#}
+                            <div class="mt-2">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="password1">Password</label>
+                                <input type="password" name="password1" id="password1" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="password2">Repeat password</label>
+                                <input type="password" name="password2" id="password2" required class="form-control" onkeyup="check()">
+                                <p id="password_message"></p>
+                            </div>
+                            <div class="mt-4">
+                                <input type="submit" name="signup" id="signup" value="Sign up" class="btn btn-success">
+                            </div>
+                            <div class="mt-4">
+                                <p>Have you registered? <a href="{% url 'loginform' %}"><b>Click to login</b></a></p>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        function check(){
+            if (document.getElementById('password1').value === document.getElementById('password2').value){
+                document.getElementById('password_message').innerHTML = 'Passwords match!';
+                document.getElementById('password_message').style.color = '#065000FF';
+                document.getElementById('password_message').style.background = '#BCFFB7FF';
+                document.getElementById('signup').disabled = false;
+            }else{
+                document.getElementById('password_message').innerHTML = "Passwords do not match!";
+                document.getElementById('password_message').style.color = "#910000FF";
+                document.getElementById('password_message').style.background = "#FFD6D6FF";
+                document.getElementById('signup').disabled = true;
+            }
+        }
+    </script>
+
+
+{% endblock %}

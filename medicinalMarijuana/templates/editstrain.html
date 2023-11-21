@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %} Edit strain {% endblock %}
+
+{% block landingSection %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card auth_card_outer">
+                    <div class="card-header">
+                        Edit strain
+                    </div>
+                    <div class="card-body auth_cards">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="mt-2">
+                                <label for="strain_name" >Strain name</label>
+                                <input type="text" value="{{ strain.strain_name }}" name="strain_name" id="strain_name" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="thc">THC</label>
+                                <input type="text" value="{{ strain.thc }}" name="thc" id="thc" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="effect">Effect</label>
+                                <select name="effect"  id="effect" class="form-control">
+                                    <option value="{{ strain.effect }}">{{ strain.effect }}</option>
+                                    <option value="Energised">Energised</option>
+                                    <option value="Happy">Happy</option>
+                                    <option value="Hungry">Hungry</option>
+                                    <option value="Sleepy">Sleepy</option>
+                                    <option value="Talkative">Talkative</option>
+                                </select>
+                            </div>
+                            <div class="mt-2">
+                                <label for="cost_blunt">Cost/blunt</label>
+                                <input type="number" value="{{ strain.cost_blunt }}" name="cost_blunt" id="cost_blunt" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="product_image">Product image</label>
+                                <input type="file" name="product_image" id="product_image" accept="image/*" required class="form-control">
+                            </div>
+                            <div class="mt-4">
+                                <input type="submit" name="add_strain" id="add_strain" value="Update" class="btn btn-success">
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

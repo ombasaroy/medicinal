@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %} Admin/orders {% endblock %}
+
+{% block landingSection %}
+
+{% include 'admin/analytics.html' %}
+
+
+
+    <div class="container-fluid" id="ordersdiv">
+        <div class="container"><h3><i class="fa-solid fa-truck-fast" style="font-size: 30px"></i> Orders</h3>
+        <form class="d-flex col-md-4 table-search" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+
+                <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Sn.</th>
+                               <th>Order no</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Strain</th>
+                              <th scope="col">Rolls</th>
+                              <th>Amount</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                        <tr>
+                          <td>1</td>
+                           <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                          <td>200</td>
+                          <td class="pending-status">
+                              <p>Pending</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                           <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                            <td>200</td>
+                          <td class="delivered">
+                              <p>Delivered</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                           <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                            <td>200</td>
+                          <td class="delivered">
+                              <p>Delivered</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                           <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                            <td>200</td>
+                          <td class="pending-status">
+                              <p>Pending</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                           <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                            <td>200</td>
+                          <td class="cancelled">
+                              <p>Cancelled</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>12343252</td>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                            <td>200</td>
+                          <td class="delivered">
+                              <p>Delivered</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Pagination -->
+                <div aria-label="Page navigation">
+                    <ul class="pagination mt-4">
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %} My cart {% endblock %}
+
+{% load static %}
+
+{% block landingSection %}
+    <div class="container-fluid">
+        <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="cart">
+                    <h2>Order summary</h2>
+                    <hr>
+                       <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Product</th>
+                              <th scope="col">Strain</th>
+                              <th scope="col">Rolls</th>
+                              <th scope="col">Sub Total</th>
+                              <th scope="col">Remove item</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                        <tr>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                          <td>200</td>
+                          <td class="remove-from-cart">
+                              <a href=""><i class="fa-solid fa-trash"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                          <td>200</td>
+                          <td>
+                              <a href=""><i class="fa-solid fa-trash"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Blunt</td>
+                          <td>Sativa</td>
+                          <td>2</td>
+                          <td>200</td>
+                          <td>
+                              <a href=""><i class="fa-solid fa-trash"></i></a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <th>Total</th>
+                          <th>
+                              KSH 600
+                          </th>
+                            <th></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button class="btn btn-success">Place order</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

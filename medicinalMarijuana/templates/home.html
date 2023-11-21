@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block landingSection %}
+
+            <div class="container-fluid mainsection">
+                <div class="container landingdiv">
+                    <img src="/media/{{ slides.image }}" class="img-fluid" alt="">
+                    <div class="landingRightdiv">
+                        <h1>{{ slides.heading }}</h1>
+                        <a href="#buy">
+                            <button>{{ slides.btn}}</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+
+
+
+{% block main %}
+
+{#    <div class="container-fluid intro-container">#}
+{#    <div class="container intro">#}
+{#        <p>Each cannabis strain has a different concentration of the cannabinoids#}
+{#            tetrahydrocannabinol (THC), cannabidiol (CBD), as well as other compounds.#}
+{#            Cultivators and farmers have long been breeding different varieties with#}
+{#            certain characteristics to create hybrids and specific strains.</p>#}
+{##}
+{#    </div>#}
+{#</div>#}
+    
+    
+    <div class="container-fluid buy" id="buy">
+        <div class="container">
+            <form>
+                {% csrf_token %}
+        <div class="row form-row">
+            <i class="fa-solid fa-joint" style="font-size: 60px; margin-bottom: 20px"></i>
+            <h1> Make your order for a blunt </h1>
+            <hr>
+{#           <div class="col">#}
+{#                <label for="product">Product</label>#}
+{#                <select name="product" id="product" class="form-control">#}
+{#                    <option>Roll</option>#}
+{##}
+{#                </select>#}
+{#            </div>#}
+            <div class="col">
+                <label for="strain">Strain</label>
+                <select name="strain" id="strain" class="form-select" required>
+                    <option value="">Choose strain</option>
+                    {% for strain in strains %}
+                        <option value="{{ strain.strain_name}} ">{{ strain.strain_name}} </option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="col">
+               <label for="roll_number">Rolls</label>
+                <input type="number" name="roll_number" id="roll_number" class="form-control" placeholder="1" required>
+            </div>
+            <div class="col">
+               <label for="amount">Amount</label>
+                <input type="number" name="amount" id="amount" class="form-control" placeholder="0" required>
+            </div>
+            <div class="col">
+                <label for=""></label>
+                <input type="submit" name="buy" id="buy" class="btn btn-success" value="Add to cart">
+            </div>
+        </div>
+
+    </form>
+        </div>
+    </div>
+
+
+{#    product section#}
+    <div class="container-fluid ourstrains">
+        <div class="container ">
+            <div class="strainouter">
+            <h1> Our popular marijuana strains</h1>
+                <hr>
+            <div class="strainssection">
+
+                {% for strain in strains %}
+                <div class="card" style="width: 16rem;">
+                      <img src="/media/{{ strain.product_image }}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ strain.strain_name}} </h5>
+                          <div class="card-text">
+                              <p>THC - <b>{{ strain.thc }}%</b></p>
+                              <p><i class="fa-solid fa-heart-pulse"></i> - <i>{{ strain.effect }}</i></p>
+                          </div>
+{#                          <div class="rating">#}
+{#                              <i class="fa-solid fa-star"></i>#}
+{#                              <i class="fa-solid fa-star"></i>#}
+{#                              <i class="fa-solid fa-star"></i>#}
+{#                              <i class="fa-solid fa-star"></i>#}
+{#                              <i class="fa-solid fa-star"></i>#}
+{#                          </div>#}
+
+                          <div class="rating"><i class="fa-solid fa-money-bill"></i> - <b>{{ strain.cost_blunt }} ksh/roll</b> </div>
+
+                      </div>
+                    <a href="#buy" class="btn btn-primary">Buy</a>
+                    </div>
+
+                {% endfor %}
+
+
+
+
+            </div>
+
+             <!-- Pagination -->
+
+        </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                {% if strains.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.previous_page_number }}">Previous</a></li>
+
+                {% endif %}
+
+
+                <li class="page-item disabled"><a href="#" class="page-link">Page {{ strains.number }} of {{ strains.paginator.num_pages }}</a></li>
+
+
+                {% for i in nums %}
+                    <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+                {% endfor %}
+
+
+                {% if strains.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.next_page_number }}">Next</a></li>
+
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.paginator.num_pages }}">Last &raquo</a></li>
+
+                {% endif %}
+
+                 </ul>
+        </nav>
+        </div>
+        </div>
+
+
+    </div>
+
+{#    Danger alert#}
+    <div class="container-fluid alertsection">
+    <div class="container ">
+        <h1>Excessive use of Cannabis may lead to lung problems</h1>
+    </div>
+
+    </div>
+
+    <div class="container-fluid socials">
+    <div class="container ">
+        <div class="socialsheader">
+            <h1>Follow us on social media</h1>
+            <hr>
+        </div>
+        <div class="socialsicons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-spotify"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

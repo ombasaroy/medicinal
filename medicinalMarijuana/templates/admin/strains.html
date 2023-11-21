@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %} Strains {% endblock %}
+{% load static %}
+
+{% block landingSection %}
+
+{#    import the common analytics html file#}
+    {% include 'admin/analytics.html' %}
+
+    {% if strains %}
+
+    <div class="container-fluid" id="straindiv">
+        <div class="container"><h3><i class="fa-solid fa-cannabis" style="font-size:30px"></i>  Strains</h3>
+        <form class="d-flex col-md-4 table-search" role="search" method="get" action="{% url 'searchresult' %}">
+              <input class="form-control me-2" type="search" name="searchstrains" placeholder="Search" aria-label="Search" required>
+              <button class="btn btn-outline-success" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+
+                <div class="mt-2">
+                                {% for message in messages %}
+                                    <div class="alert alert-success alert-dismissible fade show mt-2 mb-2" role="alert">
+                                      <i class="fa-solid fa-circle-check" style="margin-left: 5px"></i>{{ message }}
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+
+                <table class="table table-hover">
+                          <thead>
+
+
+                            <tr>
+                              <th>Sn.</th>
+                                <th>Image</th>
+                               <th>Strain</th>
+                              <th scope="col">Effect</th>
+                              <th scope="col">Cost/roll</th>
+                              <th scope="col">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for strain in strains %}
+                        <tr>
+                          <td>{{ strain.id }}</td>
+                          <td><img src="/media/{{ strain.product_image }}" width="50" alt=""></td>
+                          <td>{{ strain.strain_name }}</td>
+                          <td>{{ strain.effect }}</td>
+                          <td>{{ strain.cost_blunt }}</td>
+                          <td>
+                              <a href="/editstrain/{{ strain.id }}" class="btn-custom btn-custom-edit">Edit</a>
+                              <button class="btn-custom btn-custom-delete" id="deletebtn">Delete</button>
+                              <a href="/deletestrain/{{ strain.id }}" class="btn-custom btn-custom-delete"
+                                 id="hiddenDeleteBtn" style="display: none">Confirm Delete</a>
+                          </td>
+
+                        </tr>
+
+                          {% endfor %}
+
+                      </tbody>
+                    </table>
+
+        </div>
+    </div>
+
+       <div class="container">
+        <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                {% if strains.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.previous_page_number }}">Previous</a></li>
+
+                {% endif %}
+
+
+                <li class="page-item disabled"><a href="#" class="page-link">Page {{ strains.number }} of {{ strains.paginator.num_pages }}</a></li>
+
+
+                {% for i in nums %}
+                    <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+                {% endfor %}
+
+
+                {% if strains.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.next_page_number }}">Next</a></li>
+
+                    <li class="page-item"><a class="page-link" href="?page={{ strains.paginator.num_pages }}">Last &raquo</a></li>
+
+                {% endif %}
+
+                 </ul>
+        </nav>
+    </div>
+
+
+     {% else %}
+    <p>No strains found</p>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+                document.getElementById("deletebtn").addEventListener("click", function() {
+                let hiddenDeleteBtn = document.getElementById("hiddenDeleteBtn");
+                if (hiddenDeleteBtn.style.display === "none") {
+                  hiddenDeleteBtn.style.display = "inline";
+                  // Change "block" to "inline" if you want the input to be displayed inline
+                }else{
+                    hiddenDeleteBtn.style.display = "none";
+
+                }
+              });
+            </script>
+
+{% endblock %}
